@@ -13,7 +13,7 @@ function Home() {
    <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
         url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={"O que é Front-end? Trabalhando na área os termos HTML, CSS e JavaScript fazem parte da rotina das desenvolvedoras e desenvolvedores. Mas o que eles fazem, afinal? Descubra com a Vanessa!"}
+        videoDescription={"Durante todo o seriado o Seu Madruga sempre era chamado de preguiçoso, mas neste vídeo veremos que o Madruguinha era gente que faz!"}
       />
 
 <Carousel
