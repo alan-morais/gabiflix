@@ -48,24 +48,12 @@ function CadastroCategoria() {
       >
 
         <FormField
-          label="Nome da Categoria"
-          type="text"
-          name="nome"
-          value={values.nome}
+          label="Descrição"
+          type="textarea"
+          name="descricao"
+          value={values.descricao}
           onChange={handleChange}
         />
-
-        <div>
-          <label>
-            Descrição:
-            <textarea
-              type="text"
-              value={values.descricao}
-              name="descricao"
-              onChange={handleChange}
-            />
-          </label>
-        </div>
 
         <FormField
           label="Cor"
@@ -82,7 +70,6 @@ function CadastroCategoria() {
 
       <ul>
         {categorias.map((categoria, indice) => (
-          // eslint-disable-next-line react/no-array-index-key
           <li key={`${categoria}${indice}`}>
             {categoria.nome}
           </li>
