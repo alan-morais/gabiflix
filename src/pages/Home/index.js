@@ -7,16 +7,16 @@ import Footer from '../../componets/Footer';
 
 function Home() {
   return (
-   <div style={{background:'#141414'}}>
-   <Menu />
+    <div style={{ background: '#141414' }}>
+      <Menu />
 
-   <BannerMain
+      <BannerMain
         videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
         url={dadosIniciais.categorias[0].videos[0].url}
-        videoDescription={"Durante todo o seriado o Seu Madruga sempre era chamado de preguiçoso, mas neste vídeo veremos que o Madruguinha era gente que faz!"}
+        videoDescription="Durante todo o seriado o Seu Madruga sempre era chamado de preguiçoso, mas neste vídeo veremos que o Madruguinha era gente que faz!"
       />
 
-<Carousel
+      <Carousel
         ignoreFirstVideo
         category={dadosIniciais.categorias[0]}
       />
@@ -27,24 +27,23 @@ function Home() {
 
       <Carousel
         category={dadosIniciais.categorias[2]}
-      />      
+      />
 
       <Carousel
         category={dadosIniciais.categorias[3]}
-      />      
+      />
 
       <Carousel
         category={dadosIniciais.categorias[4]}
-      />      
+      />
 
       <Carousel
         category={dadosIniciais.categorias[5]}
-      />      
+      />
 
+      <Footer />
 
-<Footer />
- 
-   </div>
+    </div>
   );
 }
 
