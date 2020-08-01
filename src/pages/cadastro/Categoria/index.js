@@ -29,6 +29,7 @@ function CadastroCategoria() {
     );
   }
   useEffect(() => {
+    // eslint-disable-next-line no-console
     console.log('alo alo w brazil');
     setTimeout(() => {
       setCategorias([
