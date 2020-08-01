@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import SlickSlider from 'react-slick';
 import styled from 'styled-components';
@@ -17,9 +16,9 @@ const Container = styled.ul`
     transform: initial;
     &:before {
       font-size: 30px;
+      color: ${(props) => props.categoryColor || 'white'};
     }
   }
-  
   .slick-prev {
     left: 0;
   }
@@ -38,12 +37,12 @@ export const SliderItem = styled.li`
   }
 `;
 
-
-const Slider = ({ children }) => (
-  <Container>
+// eslint-disable-next-line react/prop-types
+const Slider = ({ categoryColor, children }) => (
+  <Container categoryColor={categoryColor}>
     <SlickSlider {...{
       dots: false,
-      infinite: false,
+      infinite: true,
       speed: 300,
       centerMode: false,
       variableWidth: true,
