@@ -4,15 +4,16 @@ import { FooterBase } from './styles';
 function Footer() {
   return (
     <FooterBase>
-      <a href="https://www.alura.com.br/">
-        <img src="https://www.alura.com.br/assets/img/alura-logo-white.1570550707.svg" alt="Logo Alura" />
+      <a href="https://github.com/alan-morais">
+        <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png" alt="emoji large smile" />
       </a>
       <p>
-        Orgulhosamente criado durante a
+        Feito com o apoio da
         {' '}
         <a href="https://www.alura.com.br/">
           Imersão React da Alura
         </a>
+
       </p>
     </FooterBase>
   );
