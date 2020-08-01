@@ -13,6 +13,23 @@ input[type="color"] {
 `;
 
 const Label = styled.label``;
+Label.Text = styled.span`
+color: #E5E5E5;
+  height: 57px;
+  position: absolute; 
+  top: 0;
+  left: 16px;
+  
+  display: flex;
+  align-items: center;
+  
+  transform-origin: 0% 0%;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 300;
+  
+  transition: .1s ease-in-out;
+`;
 
 const Input = styled.input`
 background: #53585D;
@@ -40,33 +57,36 @@ background: #53585D;
   &:focus:not([type='color']) + ${Label.Text} {
     transform: scale(.6) translateY(-10px);
   }
-  ${({ value }) => {
-    const hasValue = value.length > 0;
-    return hasValue && css`
-        &:not([type='color']) + ${Label.Text} {
+  ${({ hasValue }) => hasValue && css` 
+        &:not([type="color"]) + span {
           transform: scale(.6) translateY(-10px);
         }
-      `;
-  }
-}
+      `}
 `;
 function FormField({
   label, type, name, value, onChange,
 }) {
   const fieldId = `id_${name}`;
-  const isTextarea = type === 'textarea';
-  const tag = isTextarea ? 'textarea' : 'input';
+  const isTypeTextarea = type === 'textarea';
+  const tag = isTypeTextarea ? 'textarea' : 'input';
+  const hasValue = value.length;
   return (
     <FormFieldWrapper>
-      <Label htmlFor={fieldId}>
-        {label}
-        :
+      <Label
+        htmlFor={fieldId}
+      >
+        <Label.Text>
+          {label}
+          :
+        </Label.Text>
+
         <Input
           as={tag}
           id={fieldId}
           type={type}
           value={value}
           name={name}
+          hasValue={hasValue}
           onChange={onChange}
         />
       </Label>
@@ -77,6 +97,7 @@ function FormField({
 FormField.defaultProps = {
   type: 'text',
   value: '',
+  // eslint-disable-next-line react/default-props-match-prop-types
   onChange: () => {},
 };
 
@@ -85,6 +106,7 @@ FormField.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   value: PropTypes.string,
-  onChange: PropTypes.func,
+  // eslint-disable-next-line react/require-default-props
+  onChange: PropTypes.func.isRequired,
 };
 export default FormField;
