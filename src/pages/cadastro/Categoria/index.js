@@ -3,84 +3,66 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
 
 function CadastroCategoria() {
-  const valoresIniciais = {
+  const initialValues = {
     nome: '',
     descricao: '',
     cor: '',
   };
-
+  const { handleChange, values, clearForm } = useForm(initialValues);
   const [categorias, setCategorias] = useState([]);
-  const [values, setValues] = useState(valoresIniciais);
 
-  function setValue(chave, valor) {
-    setValues({
-      ...values,
-      [chave]: valor,
-    });
-  }
-
-  function handleChange(evento) {
-    // const { getAttribute, value } = evento.target;
-    setValue(
-      evento.target.getAttribute('name'),
-      evento.target.value,
-    );
-  }
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('alo alo w brazil');
-    setTimeout(() => {
-      setCategorias([
-        ...categorias,
-        {
-          id: 1,
-          nome: 'Chaves',
-          descricao: 'Melhor de chaves',
-          cor: '#6bd1ff',
-        },
-        {
-          id: 2,
-          nome: 'Batman',
-          descricao: 'Melhor de batman',
-          cor: '#cbbcdd',
-        },
-      ]);
-    });
-  });
+    const URL = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorias'
+      : 'https://aluraflix.herokuapp.com/categorias';
+    fetch(URL)
+      .then(async (response) => {
+        if (response.ok) {
+          const result = await response.json();
+          setCategorias(result);
+          return;
+        }
+        throw new Error('Não foi possível pegar os dados');
+      });
+  }, []);
+
   return (
     <PageDefault>
       <h1>
-        Cadastro Categoria:
+        Cadastro de Categoria:&nbsp;
         {values.nome}
       </h1>
-      <form onSubmit={
-                function handleSubmit(evento) {
-                  evento.preventDefault();
-                  setCategorias([
-                    ...categorias,
-                    values,
-                  ]);
-                  setValues(valoresIniciais);
-                }
-            }
+
+      <form onSubmit={function handleSubmit(params) {
+        params.preventDefault();
+        setCategorias([
+          ...categorias,
+          values,
+        ]);
+
+        clearForm();
+      }}
       >
 
         <FormField
-          label="Nome da Categoria"
+          label="Nome"
           type="text"
           name="nome"
           value={values.nome}
           onChange={handleChange}
         />
+
         <FormField
           label="Descrição"
-          type="????"
+          type="textarea"
           name="descricao"
           value={values.descricao}
           onChange={handleChange}
         />
+
         <FormField
           label="Cor"
           type="color"
@@ -92,26 +74,20 @@ function CadastroCategoria() {
         <Button>
           Cadastrar
         </Button>
+
+        <ul>
+          {categorias.map((categoria) => (
+            <li key={`${categoria.titulo}`}>
+              {categoria.titulo}
+            </li>
+          ))}
+        </ul>
+
       </form>
-
-      {categorias.length === 0
-      && (
-      <div>
-        Carregando...
-      </div>
-      )}
-
-      <ul>
-        {categorias.map((categoria) => (
-          <li key={`${categoria.nome}`}>
-            {categoria.nome}
-          </li>
-        ))}
-      </ul>
-
       <Link to="/">
-        Voltar para home
+        Ir para Home
       </Link>
+
     </PageDefault>
   );
 }
