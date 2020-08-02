@@ -1,6 +1,6 @@
 import React from 'react';
-import PageDefault from '../../components/PageDefault';
 import { Link } from 'react-router-dom';
+import PageDefault from '../../components/PageDefault';
 
 function Error() {
   return (
@@ -12,6 +12,6 @@ function Error() {
       </Link>
     </PageDefault>
   );
-};
+}
 
-export default Error
+export default Error;
