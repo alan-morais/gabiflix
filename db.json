@@ -11,6 +11,12 @@
             "nome": "Batman",
             "descricao": "Melhor de batman",
             "cor": "#cbbcdd"
+        },
+        {
+            "id":3,
+            "nome": "Homem aranha",
+            "descricao": "Melhor de batman",
+            "cor": "#cbff99"
         }
     ]
 }
