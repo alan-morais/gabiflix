@@ -17,7 +17,7 @@ function CadastroCategoria() {
   useEffect(() => {
     const URL = window.location.hostname.includes('localhost')
       ? 'http://localhost:8080/categorias'
-      : 'https://aluraflix.herokuapp.com/categorias';
+      : 'https://gabiflix.herokuapp.com/categorias';
     fetch(URL)
       .then(async (response) => {
         if (response.ok) {
