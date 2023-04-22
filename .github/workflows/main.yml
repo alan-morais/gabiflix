@@ -1,0 +1,16 @@
+name: Check for passwords
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-passwords:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Find passwords
+      run: |
+        grep -r -E 'password|passwd|credentials|senha|psw' .
